@@ -4,6 +4,8 @@
 
 **Kata author**: Dave Thomas (https://pragdave.me/)
 
+<br/>
+
 ## What is it?
 
 It's a first attempt of DevsPL community located at https://devspl.slack.com/ on sharing different approaches on making architectural coding decisions.
@@ -15,11 +17,12 @@ Have fun!
 To share your approach for sharing your approach for this kata, do the following:
 - branch out from `master` branch (naming of the branch is up to you)
 - create new folder in root of repository called: `{yourGithubLogin-language-yoursubtitle}`
-- *example:* first C# attempt of user 'm-wilczynski' could be `m-wilczynski-csharp-inheritance` and 2nd one could be `mwilczynski-csharp-composition`
+- **example:** first C# attempt of user 'bob' could be `bob-csharp-inheritance` and 2nd one could be `bob-csharp-composition`; another one with Scala could be `bob-scala-actors` and so on
 - when you're ready to share, start a `pull request` to master branch
+- any programming language is welcome
 
 ## Kata description
-
+<br/>
 > ### "Business Rules"
 >
 >How can you tame a wild (and changing) set of business rules?
@@ -40,3 +43,5 @@ Now you’re faced with implementing this system. The rules are complicated, and
 >
 >### Objectives
 >How can you tame these wild business rules? How can you build a system that will be flexible enough to handle both the complexity and the need for change? And how can you do it without condemming yourself to years and years of mindless support?
+
+**From:**  *http://codekata.com/kata/kata16-business-rules/*
