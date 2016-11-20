@@ -22,13 +22,19 @@
   "Stub function for activating membership"
   [product](println (str "Activating membership for: " product)))
 
+(defn upgrade-membership-stub
+  "Stub function for upgrading membership"
+  [product](println (str "Upgrading membership for: " product)))
+
 (def payment-rules
   (list (build-payment-rule #(product-has-type? % :physical)
                             #(generate-packing-slip-stub %))
         (build-payment-rule #(product-has-type? % :book)
                             #(generate-duplicate-packaging-slip-stub %))
         (build-payment-rule #(product-has-type? % :membership)
-                            #(activate-membership-stub %))))
+                            #(activate-membership-stub %))
+        (build-payment-rule #(product-has-type? % :membership-upgrade)
+                            #(upgrade-membership-stub %))))
 
 (defn execute-rule-if-applies
   [product rule]
