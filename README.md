@@ -14,7 +14,7 @@ Have fun!
 
 ## How-To
 
-To share your approach for sharing your approach for this kata, do the following:
+To share your approach for this kata, do the following:
 - branch out from `master` branch (naming of the branch is up to you)
 - create new folder in root of repository called: `{yourGithubLogin-language-yoursubtitle}`
 - **example:** first C# attempt of user 'bob' could be `bob-csharp-inheritance` and 2nd one could be `bob-csharp-composition`; another one with Scala could be `bob-scala-actors` and so on
