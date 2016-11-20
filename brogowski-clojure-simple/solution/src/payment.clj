@@ -5,6 +5,17 @@
   (let [types (:types product)]
     (some #{type} types)))
 
+(defn substract
+  "Removes collection elements from other collection"
+  [pred-coll coll]
+  (remove #(some #{%} pred-coll) coll))
+
+(defn product-has-any-type?
+  [product expected-types]
+  (let [product-types (:types product)]
+    (< (count (substract product-types expected-types))
+       (count expected-types))))
+
 (defn build-payment-rule
   [activation-check activator]
   {:activation-check (fn [product] (activation-check product))
@@ -26,6 +37,10 @@
   "Stub function for upgrading membership"
   [product](println (str "Upgrading membership for: " product)))
 
+(defn email-about-activation-or-upgrade-stub
+  "Stub function for sending email about membership upgrade/activation"
+  [product](println (str "Notifing about membership upgrade/activation for: " product)))
+
 (def payment-rules
   (list (build-payment-rule #(product-has-type? % :physical)
                             #(generate-packing-slip-stub %))
@@ -34,7 +49,9 @@
         (build-payment-rule #(product-has-type? % :membership)
                             #(activate-membership-stub %))
         (build-payment-rule #(product-has-type? % :membership-upgrade)
-                            #(upgrade-membership-stub %))))
+                            #(upgrade-membership-stub %))
+        (build-payment-rule #(product-has-any-type? % (list :membership :membership-upgrade))
+                            #(email-about-activation-or-upgrade-stub %))))
 
 (defn execute-rule-if-applies
   [product rule]
