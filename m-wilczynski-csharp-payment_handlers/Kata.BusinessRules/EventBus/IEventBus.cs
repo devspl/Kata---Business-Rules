@@ -4,6 +4,6 @@ namespace Kata.BusinessRules.EventBus
 {
     public interface IEventBus
     {
-        void RaiseEvent(IEvent @raisedEvent);
+        void RaiseEvent(IEvent @event);
     }
 }
