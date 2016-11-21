@@ -12,7 +12,7 @@ namespace Kata.BusinessRules
 
         public static void RegisterContainer(IContainer container)
         {
-            if (container != null) return;
+            if (_container != null) return;
             if (container == null) throw new ArgumentNullException(nameof(container));
             _container = container;
             _eventBus = _container.Resolve<IEventBus>();
