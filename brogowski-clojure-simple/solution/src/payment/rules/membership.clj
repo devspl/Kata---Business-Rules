@@ -13,7 +13,7 @@
   "Stub function for sending email about membership upgrade/activation"
   [product] (println (str "Notifing about membership upgrade/activation for: " product)))
 
-(def membership-payment-rules
+(def payment-rules
   (list (build-action-rule #(product-has-type? % :membership)
                            #(activate-membership %))
         (build-action-rule #(product-has-type? % :membership-upgrade)

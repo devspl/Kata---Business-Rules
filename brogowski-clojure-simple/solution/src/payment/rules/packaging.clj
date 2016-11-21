@@ -23,7 +23,7 @@
       (do (println (str "Added movie to: " new-packaging-slip))
           new-packaging-slip))))
 
-(def packaging-payment-rules
+(def payment-rules
   (list (build-chained-rules
           (build-chained-rule #(product-has-type? % :physical)
                               (fn [product & _] (generate-packing-slip product)))

@@ -1,10 +1,13 @@
 (ns payment.core)
 (use 'payment.rules.utils)
+(require '[payment.rules.membership :as membership])
+(require '[payment.rules.packaging :as packaging])
+(require '[payment.rules.comission :as comission])
 
 (def payment-rules
-  (concat payment.rules.membership/membership-payment-rules
-          payment.rules.packaging/packaging-payment-rules
-          payment.rules.comission/comission-payment-rules))
+  (concat membership/payment-rules
+          packaging/payment-rules
+          comission/payment-rules))
 
 (defn recieve-payment
   "Handles new payment"
