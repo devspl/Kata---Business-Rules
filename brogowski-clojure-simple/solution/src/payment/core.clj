@@ -3,7 +3,8 @@
 
 (def payment-rules
   (concat payment.rules.membership/membership-payment-rules
-          payment.rules.packaging/packaging-payment-rules))
+          payment.rules.packaging/packaging-payment-rules
+          payment.rules.comission/comission-payment-rules))
 
 (defn recieve-payment
   "Handles new payment"
