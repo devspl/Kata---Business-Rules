@@ -1,4 +1,6 @@
+using System;
 using Autofac;
+using Kata.BusinessRules.Autofac;
 
 namespace Kata.BusinessRules
 {
@@ -6,7 +8,12 @@ namespace Kata.BusinessRules
     {
         public static void Main(string[] args)
         {
-            
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<EventModule>();
+            var container = builder.Build();
+            EventRoot.RegisterContainer(container);
+
+            Console.ReadKey();
         }
     }
 }

@@ -8,14 +8,18 @@ namespace Kata.BusinessRules
     {
         public Guid Id { get; }
         public Product PaidProduct { get; }
+        public Customer Payer { get; }
 
-        public Payment(Product paidProduct)
+        public Payment(Product paidProduct, Customer payer)
         {
             if (paidProduct == null)
                 throw new ArgumentNullException(nameof(paidProduct));
+            if (payer == null)
+                throw new ArgumentNullException(nameof(payer));
             PaidProduct = paidProduct;
+            Payer = payer;
             Id = Guid.NewGuid();
-            EventRoot.RaiseEvent(new PaymentMadeEvent(this));
+            EventRoot.RaiseEventOf(new PaymentMadeEvent(this));
         }
     }
 }

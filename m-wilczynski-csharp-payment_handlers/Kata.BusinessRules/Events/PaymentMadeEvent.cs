@@ -4,12 +4,12 @@ namespace Kata.BusinessRules.Events
 {
     public class PaymentMadeEvent : IEventOf<Payment>
     {
-        public readonly Payment PaymentMade;
+        public Payment Source { get; }
         public PaymentMadeEvent(Payment payment)
         {
             if (payment == null)
                 throw new ArgumentNullException(nameof(payment));
-            PaymentMade = payment;
+            Source = payment;
         }
     }
 }

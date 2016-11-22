@@ -1,27 +1,32 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Autofac;
-using Kata.BusinessRules.EventBus;
+using Kata.BusinessRules.EventHandlers;
 using Kata.BusinessRules.Events;
 
 namespace Kata.BusinessRules
 {
     public static class EventRoot
     {
-        private static IContainer _container;
-        private static IEventBus _eventBus;
+        private static Func<Type, IEnumerable<IEventHandler>> _registeredHandlers;
 
         public static void RegisterContainer(IContainer container)
         {
-            if (_container != null) return;
+            if (_registeredHandlers != null) return;
             if (container == null) throw new ArgumentNullException(nameof(container));
-            _container = container;
-            _eventBus = _container.Resolve<IEventBus>();
+            _registeredHandlers = container.Resolve<Func<Type, IEnumerable<IEventHandler>>>();
         }
-
-        public static void RaiseEvent(IEvent @event)
+        
+        public static void RaiseEventOf<TSource>(IEventOf<TSource> @event) where TSource : EventSource
         {
             if (@event == null) return;
-            _eventBus.RaiseEvent(@event);
+            
+            var handlers = _registeredHandlers(typeof(TSource)).OfType<IEventHandler<IEventOf<TSource>>>();
+            foreach (var handler in handlers.Where(h => h.CanHandle(@event)))
+            {
+                handler.HandleEvent(@event);
+            }
         }
     }
-} 
+}

@@ -4,10 +4,10 @@ namespace Kata.BusinessRules.Events
 {
     public abstract class EventSource
     {
-        protected void RaiseEvent(IEvent @event)
+        protected void RaiseEvent<TSource>(IEventOf<TSource> @event) where TSource : EventSource
         {
             if (@event == null) throw new ArgumentNullException(nameof(@event));
-            EventRoot.RaiseEvent(@event);
+            EventRoot.RaiseEventOf(@event);
         }
     }
 }
