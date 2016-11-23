@@ -1,5 +1,6 @@
 using System;
 using Kata.BusinessRules.Events;
+using Kata.BusinessRules.Models;
 
 namespace Kata.BusinessRules.EventHandlers
 {
@@ -9,7 +10,7 @@ namespace Kata.BusinessRules.EventHandlers
         {
             var casted =  @event as PaymentMadeEvent;
             if (casted == null) return false;
-            return casted.Source.PaidProduct.CategoryName == "Books";
+            return casted.Source.PaidProduct is PhysicalProduct && casted.Source.PaidProduct.CategoryName == "Books";
         }
 
         public void HandleEvent(IEventOf<Payment> @event)
