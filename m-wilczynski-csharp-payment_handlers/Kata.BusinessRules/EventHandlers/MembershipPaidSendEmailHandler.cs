@@ -16,7 +16,7 @@ namespace Kata.BusinessRules.EventHandlers
         public void HandleEvent(IEventOf<Payment> @event)
         {
             if (!CanHandle(@event)) return;
-            Console.WriteLine($"Membership for {@event.Source.PaidProduct.Name} activated. ");
+            Console.WriteLine($"Sent mail for {@event.Source.PaidProduct.Name} membership. ");
         }
     }
 }

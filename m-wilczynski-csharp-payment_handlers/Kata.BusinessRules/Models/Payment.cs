@@ -19,6 +19,10 @@ namespace Kata.BusinessRules
             PaidProduct = paidProduct;
             Payer = payer;
             Id = Guid.NewGuid();
+        }
+
+        public void MakePayment()
+        {
             EventRoot.RaiseEventOf(new PaymentMadeEvent(this));
         }
     }

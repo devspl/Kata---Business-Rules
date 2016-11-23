@@ -22,7 +22,7 @@ namespace Kata.BusinessRules
         {
             if (@event == null) return;
             
-            var handlers = _registeredHandlers(typeof(TSource)).OfType<IEventHandler<IEventOf<TSource>>>();
+            var handlers = _registeredHandlers(typeof(IEventOf<TSource>)).OfType<IEventHandler<IEventOf<TSource>>>();
             foreach (var handler in handlers.Where(h => h.CanHandle(@event)))
             {
                 handler.HandleEvent(@event);

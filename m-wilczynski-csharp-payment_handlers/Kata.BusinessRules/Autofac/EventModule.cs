@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Autofac;
 using Kata.BusinessRules.EventHandlers;
+using Kata.BusinessRules.Events;
 
 namespace Kata.BusinessRules.Autofac
 {
@@ -9,9 +10,11 @@ namespace Kata.BusinessRules.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                        .Where(x => x.IsAssignableTo<IEventHandler>())
-                        .AsImplementedInterfaces();
+            builder.RegisterType<BookPaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
+            builder.RegisterType<MembershipActivationPaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
+            builder.RegisterType<MembershipPaidSendEmailHandler>().As<IEventHandler<IEventOf<Payment>>>();
+            builder.RegisterType<MembershipUpgradePaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
+            builder.RegisterType<PhysicalProductPaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
 
             builder.Register<Func<Type, IEnumerable<IEventHandler>>>(c =>
             {
@@ -20,7 +23,8 @@ namespace Kata.BusinessRules.Autofac
                 {
                     var handlerType = typeof(IEventHandler<>).MakeGenericType(t);
                     var handlersCollectionType = typeof(IEnumerable<>).MakeGenericType(handlerType);
-                    return (IEnumerable<IEventHandler>)ctx.Resolve(handlersCollectionType);
+                    var results = (IEnumerable<IEventHandler>)ctx.Resolve(handlersCollectionType);
+                    return results;
                 };
             });
         }

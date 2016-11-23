@@ -10,3 +10,4 @@ BRAINSTORMING:
 PROBLEMS: 
 - avoid ServiceLocator using IoC containers - inject handler factory?
 - design event raising - DDD style?
+- what if product can be in multiple categories
