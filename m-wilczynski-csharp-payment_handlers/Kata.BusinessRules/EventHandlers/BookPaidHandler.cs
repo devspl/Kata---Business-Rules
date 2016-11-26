@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Kata.BusinessRules.Events;
 using Kata.BusinessRules.Models;
 
@@ -10,7 +11,7 @@ namespace Kata.BusinessRules.EventHandlers
         {
             var casted =  @event as PaymentMadeEvent;
             if (casted == null) return false;
-            return casted.Source.PaidProduct is PhysicalProduct && casted.Source.PaidProduct.CategoryName == "Books";
+            return casted.Source.PaidProduct.MatchingTypes.Any(prd => prd == ProductType.Book);
         }
 
         public void HandleEvent(IEventOf<Payment> @event)

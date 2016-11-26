@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Kata.BusinessRules.Events;
 using Kata.BusinessRules.Models;
 
@@ -10,8 +11,7 @@ namespace Kata.BusinessRules.EventHandlers
         {
             var casted =  @event as PaymentMadeEvent;
             if (casted == null) return false;
-            var product = casted.Source.PaidProduct as MembershipProduct;
-            return product != null && product.PurchaseAction == MembershipPurchaseAction.Activation;
+            return casted.Source.PaidProduct.MatchingTypes.Any(prd => prd == ProductType.MembershipActivation);
         }
 
         public void HandleEvent(IEventOf<Payment> @event)
