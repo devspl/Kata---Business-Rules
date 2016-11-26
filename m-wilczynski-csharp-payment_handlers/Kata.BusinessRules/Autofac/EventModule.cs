@@ -15,6 +15,8 @@ namespace Kata.BusinessRules.Autofac
             builder.RegisterType<MembershipPaidSendEmailHandler>().As<IEventHandler<IEventOf<Payment>>>();
             builder.RegisterType<MembershipUpgradePaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
             builder.RegisterType<PhysicalProductPaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
+            builder.RegisterType<LearningToSkiVideoPaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
+            builder.RegisterType<PhysicalOrBookPaidHandler>().As<IEventHandler<IEventOf<Payment>>>();
 
             builder.Register<Func<Type, IEnumerable<IEventHandler>>>(c =>
             {

@@ -13,19 +13,21 @@ namespace Kata.BusinessRules
 
             var customer = new Customer();
 
-            var activation = new Product
-            { 
-                Name = "Swimmer club",
-            };
+            var activation = new Product { Name = "Swimmer club" };
             activation.MatchingTypes.Add(ProductType.MembershipActivation);
 
             new Payment(activation, customer).MakePayment();
 
             var book = new Product { Name = "Jungle Book" };
-            book.MatchingTypes.Add(ProductType.Physical);
             book.MatchingTypes.Add(ProductType.Book);
             
             new Payment(book, customer).MakePayment();
+
+            var video = new Product { Name = "Learning To Ski" };
+            video.MatchingTypes.Add(ProductType.Physical);
+            video.MatchingTypes.Add(ProductType.Video);
+
+            new Payment(video, customer).MakePayment();
 
             Console.ReadKey();
         }
