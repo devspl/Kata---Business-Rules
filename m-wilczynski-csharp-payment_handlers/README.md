@@ -1,4 +1,4 @@
-**Language used:** C#
+**Language used:** C# with .NET Core 1.0
 
 **Idea description:** 
 Creating an event root and defining handlers through IoC container, that will act on specified payment if their internally developed requirements are all met.
